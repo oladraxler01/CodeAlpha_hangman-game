@@ -50,7 +50,16 @@ def display_answer(answer):
 
 #main function to run the game
 def main():
-    answer = random.choice(words)
+
+    # 1. Convert dictionary keys to a list to pick a random word
+    # [cite: 32, 39]
+
+    answer = random.choice(list(words.keys()))
+
+    # 2. Grab the category (value) associated with that specific word
+    #
+    category = words[answer]
+    
     hint =["_"] * len(answer)
     wrong_guesses = 0
     guessed_letters = set()
@@ -59,6 +68,8 @@ def main():
 #while loop to run the game until the player wins or loses
     while is_running :
         display_man(wrong_guesses)
+        print(f"CATEGORY: {category}")
+
         display_hint(hint)
         guess = input("Guess a letter: ").lower()
 
